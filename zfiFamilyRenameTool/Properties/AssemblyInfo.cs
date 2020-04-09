@@ -19,6 +19,8 @@
 [assembly: AssemblyDescription("2019")]
 #elif R2020
 [assembly: AssemblyDescription("2020")]
+#elif R2021
+[assembly: AssemblyDescription("2021")]
 #endif
 [assembly: AssemblyVersion("1.1.3.0")]
 [assembly: AssemblyFileVersion("1.1.3.0")]
