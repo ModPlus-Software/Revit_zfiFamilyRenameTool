@@ -2,9 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using ModPlusAPI.Interfaces;
+    using ModPlusAPI.Abstractions;
+    using ModPlusAPI.Enums;
 
-    public class ModPlusConnector : IModPlusFunctionInterface
+    public class ModPlusConnector : IModPlusPlugin
     {
         private static ModPlusConnector _instance;
 
@@ -14,11 +15,7 @@
 
         public string Name => "zfiFamilyRenameTool";
 
-#if R2015
-        public string AvailProductExternalVersion => "2015";
-#elif R2016
-        public string AvailProductExternalVersion => "2016";
-#elif R2017
+#if R2017
         public string AvailProductExternalVersion => "2017";
 #elif R2018
         public string AvailProductExternalVersion => "2018";
@@ -50,10 +47,10 @@
 
         public string ToolTipHelpImage => string.Empty;
 
-        public List<string> SubFunctionsNames => new List<string>();
+        public List<string> SubPluginsNames => new List<string>();
 
-        public List<string> SubFunctionsLames => new List<string>();
-
+        public List<string> SubPluginsLNames => new List<string>();
+        
         public List<string> SubDescriptions => new List<string>();
 
         public List<string> SubFullDescriptions => new List<string>();

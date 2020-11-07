@@ -3,8 +3,8 @@ namespace zfiFamilyRenameTool.ViewModel
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Windows.Input;
-    using Abstractions;
     using ModPlusAPI;
+    using ModPlusAPI.Abstractions;
     using ModPlusAPI.Mvvm;
     using ModPlusAPI.Windows;
     using Revit;
@@ -24,9 +24,9 @@ namespace zfiFamilyRenameTool.ViewModel
 
         public ICommand ApplyCommand => new RelayCommandWithoutParameter(ApplyAndShowLogs);
 
-        public ICommand CloseCommand => new RelayCommand<ICloseable>(Close);
+        public ICommand CloseCommand => new RelayCommand<IClosable>(Close);
 
-        public ICommand CloseAndApplyCommand => new RelayCommand<ICloseable>(CloseAndApply);
+        public ICommand CloseAndApplyCommand => new RelayCommand<IClosable>(CloseAndApply);
 
         public ICommand OpenFamiliesCommand => new RelayCommandWithoutParameter(OpenFamilies);
 
@@ -59,7 +59,7 @@ namespace zfiFamilyRenameTool.ViewModel
             RenamerCommand.RenamerWindow.Activate();
         }
 
-        private void CloseAndApply(ICloseable closeable)
+        private void CloseAndApply(IClosable closeable)
         {
             _service.Renamed += (s, e) =>
             {
@@ -70,7 +70,7 @@ namespace zfiFamilyRenameTool.ViewModel
             Apply();
         }
 
-        private void Close(ICloseable closeable)
+        private void Close(IClosable closeable)
         {
             closeable.Close();
             if (Body != null)

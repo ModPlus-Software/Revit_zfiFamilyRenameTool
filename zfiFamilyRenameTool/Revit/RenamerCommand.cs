@@ -23,7 +23,9 @@ namespace zfiFamilyRenameTool.Revit
         {
             try
             {
+#if !DEBUG
                 ModPlusAPI.Statistic.SendCommandStarting(ModPlusConnector.Instance);
+#endif
 
                 if (RenamerWindow == null)
                 {
