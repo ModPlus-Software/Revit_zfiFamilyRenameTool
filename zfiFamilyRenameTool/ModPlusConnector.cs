@@ -25,6 +25,8 @@
         public string AvailProductExternalVersion => "2020";
 #elif R2021
         public string AvailProductExternalVersion => "2021";
+#elif R2022
+        public string AvailProductExternalVersion => "2022";
 #endif
 
         public string FullClassName => "zfiFamilyRenameTool.Revit.RenamerCommand";

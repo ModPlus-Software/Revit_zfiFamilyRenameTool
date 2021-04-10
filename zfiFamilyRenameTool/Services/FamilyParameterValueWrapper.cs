@@ -33,7 +33,13 @@
                     var d = familyType.AsDouble(parameter);
                     if (d.HasValue)
                     {
-                        Source = UnitUtils.ConvertFromInternalUnits(d.Value, parameter.DisplayUnitType)
+                        Source = UnitUtils.ConvertFromInternalUnits(
+                                d.Value,
+#if R2017 || R2018 || R2019 || R2020
+                                parameter.DisplayUnitType)
+#else
+                                parameter.GetUnitTypeId())
+#endif
                             .ToString(CultureInfo.InvariantCulture);
                     }
 
@@ -72,7 +78,11 @@
                 {
                     case StorageType.Double:
                         if (double.TryParse(Destination.Replace(",", "."), NumberStyles.Number, CultureInfo.InvariantCulture, out var d))
+#if R2017 || R2018 || R2019 || R2020
                             fm.Set(_parameter, UnitUtils.ConvertToInternalUnits(d, _parameter.DisplayUnitType));
+#else
+                            fm.Set(_parameter, UnitUtils.ConvertToInternalUnits(d, _parameter.GetUnitTypeId()));
+#endif
                         break;
                     case StorageType.String:
                         fm.Set(_parameter, Destination);
